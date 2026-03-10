@@ -1,3 +1,82 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const numeroWhatsApp = '5511996495465'; 
+
+  const montarLinkWhatsApp = (mensagem) => {
+    const texto = encodeURIComponent(mensagem);
+    return `https://wa.me/${numeroWhatsApp}?text=${texto}`;
+  };
+
+  document.querySelectorAll('.js-whatsapp').forEach((link) => {
+    const mensagem = link.dataset.message || 'Olá! Quero falar com a Lado B Engenharia.';
+    link.setAttribute('href', montarLinkWhatsApp(mensagem));
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', function (event) {
+      const destino = document.querySelector(this.getAttribute('href'));
+      if (!destino) return;
+
+      event.preventDefault();
+      destino.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      navLinks.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const aberto = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+    });
+  }
+
+  document.querySelectorAll('.faq-item').forEach((item) => {
+    const pergunta = item.querySelector('.faq-question');
+    const resposta = item.querySelector('.faq-answer');
+
+    pergunta.addEventListener('click', () => {
+      const ativo = item.classList.contains('active');
+
+      document.querySelectorAll('.faq-item').forEach((faq) => {
+        faq.classList.remove('active');
+        faq.querySelector('.faq-answer').style.maxHeight = null;
+      });
+
+      if (!ativo) {
+        item.classList.add('active');
+        resposta.style.maxHeight = `${resposta.scrollHeight}px`;
+      }
+    });
+  });
+
+  const secoes = document.querySelectorAll('main section[id]');
+  const linksMenu = document.querySelectorAll('.nav-links a');
+
+  const ativarLink = () => {
+    const topo = window.scrollY + 120;
+
+    secoes.forEach((secao) => {
+      const inicio = secao.offsetTop;
+      const fim = inicio + secao.offsetHeight;
+      const id = secao.getAttribute('id');
+
+      if (topo >= inicio && topo < fim) {
+        linksMenu.forEach((link) => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+        });
+      }
+    });
+  };
+
+  ativarLink();
+  window.addEventListener('scroll', ativarLink);
+});
 :root {
   --bg: #081018;
   --bg-alt: #101c27;

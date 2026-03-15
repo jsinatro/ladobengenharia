@@ -1,363 +1,126 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lado B Engenharia · Inteligência Construtiva</title>
-    <!-- Metadados SEO aprimorados -->
-    <meta name="description" content="Lado B Engenharia: Sistema de inteligência construtiva unindo lógica de software e execução de campo. Diagnóstico aprofundado para eliminar retrabalho em projetos, elétrica e laudos.">
-    <meta name="keywords" content="engenharia elétrica Ibiúna, laudos técnicos SP, AVCB, diagnóstico de falhas elétricas, reformas planejadas, ART, regularização de imóveis, engenharia investigativa">
-    <meta name="author" content="Lado B Engenharia">
-    <!-- Estilos: mantendo identidade terminal, cores originais e disposição -->
-    <style>
-        /* Reset básico e cores de terminal */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            background-color: #0a0f0e;  /* fundo escuro */
-            color: #bfd7d0;             /* verde acinzentado claro */
-            font-family: 'Fira Code', 'Courier New', Courier, monospace;
-            line-height: 1.6;
-            padding: 2rem 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            font-size: 1rem;
-        }
-        /* Links e elementos interativos */
-        a {
-            color: #8bb3a7;
-            text-decoration: none;
-            border-bottom: 1px dashed #3a5a4e;
-        }
-        a:hover {
-            color: #c3e8d9;
-            border-bottom: 1px solid #c3e8d9;
-        }
-        /* Navegação estilo diretório */
-        .nav-bar {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin-bottom: 3rem;
-            border-bottom: 1px solid #2a3f38;
-            padding-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-        .nav-bar a {
-            border-bottom: none;
-            font-weight: 500;
-        }
-        .nav-bar a::before {
-            content: '~/';
-            color: #6f8b80;
-            margin-right: 0.2rem;
-        }
-        /* Títulos e prefixos */
-        h1, h2, h3 {
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-        h1 {
-            font-size: 2.5rem;
-            margin: 1.5rem 0 0.5rem 0;
-            line-height: 1.2;
-        }
-        h2 {
-            font-size: 2rem;
-            margin: 2.5rem 0 1.2rem 0;
-            position: relative;
-        }
-        h2::before {
-            content: '## ';
-            color: #6f8b80;
-            font-weight: normal;
-        }
-        h3 {
-            font-size: 1.5rem;
-            margin: 2rem 0 1rem 0;
-        }
-        /* Prefixo para linhas de comentário/código */
-        .comment {
-            color: #6f8b80;
-            font-style: italic;
-            margin: 0.5rem 0;
-        }
-        .comment::before {
-            content: '// ';
-            color: #4a6b5e;
-        }
-        .code-block {
-            background-color: #0f1513;
-            border-left: 4px solid #2f4f3f;
-            padding: 1rem 1.5rem;
-            margin: 1.5rem 0;
-            font-family: inherit;
-            border-radius: 0 6px 6px 0;
-            overflow-x: auto;
-            white-space: pre-wrap;
-            word-break: break-word;
-        }
-        .prompt {
-            color: #8bb3a7;
-        }
-        .prompt::before {
-            content: '$ ';
-            color: #5f8777;
-        }
-        /* Botões de ação (CTAs) com estilo de comando */
-        .cmd-button {
-            display: inline-block;
-            background-color: transparent;
-            border: 1px solid #3f6b5a;
-            color: #bfd7d0;
-            padding: 0.8rem 1.5rem;
-            margin: 1rem 0 0.5rem 0;
-            font-family: inherit;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: 0.2s;
-            border-radius: 4px;
-            text-decoration: none;
-        }
-        .cmd-button:hover {
-            background-color: #1f3a30;
-            border-color: #8bb3a7;
-            color: #e3f0ea;
-        }
-        .cmd-button::before {
-            content: '_ ';
-            color: #9bc7b5;
-        }
-        /* Seção de serviços como módulos */
-        .modulo {
-            margin-bottom: 2rem;
-            padding: 1rem;
-            border: 1px dashed #2f4f3f;
-            background-color: #0c1311;
-        }
-        .modulo-titulo {
-            font-size: 1.8rem;
-            color: #a6cdc0;
-            margin-bottom: 0.2rem;
-        }
-        .modulo-titulo::before {
-            content: '0' counter(modulo) '/ ';
-            counter-increment: modulo;
-            color: #578a78;
-            font-size: 1.4rem;
-        }
-        .modulo-arquivo {
-            color: #638d7d;
-            font-size: 0.95rem;
-            margin: 0.25rem 0 0.75rem 0;
-            font-family: inherit;
-        }
-        .modulo-arquivo::before {
-            content: '# ';
-            color: #416c5b;
-        }
-        .modulo-funcao {
-            margin: 0.5rem 0 0.25rem 0;
-        }
-        .modulo-funcao::before {
-            content: '-> Função: ';
-            color: #80b3a2;
-        }
-        .modulo-acao::before {
-            content: '-> Ação: ';
-            color: #80b3a2;
-        }
-        /* Contato estilo .config */
-        .config-file {
-            background-color: #0b100f;
-            border: 1px solid #2f4f3f;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 8px;
-        }
-        .config-line {
-            margin: 0.75rem 0;
-            word-break: break-word;
-        }
-        .config-comment {
-            color: #527a6b;
-        }
-        .config-comment::before {
-            content: '# ';
-        }
-        .config-cmd {
-            color: #b4dfcf;
-        }
-        .config-cmd::before {
-            content: '>_ ';
-            color: #82bba8;
-        }
-        .config-string {
-            color: #b5cfc5;
-            background-color: #1a2923;
-            padding: 0.2rem 0.4rem;
-            border-radius: 3px;
-        }
-        footer {
-            margin-top: 4rem;
-            border-top: 1px solid #2f4f3f;
-            padding-top: 1.5rem;
-            text-align: left;
-            color: #527a6b;
-        }
-        /* Contador para módulos */
-        .modulos-container {
-            counter-reset: modulo;
-        }
-        /* Ajustes responsivos */
-        @media (max-width: 700px) {
-            body { padding: 1rem; }
-            h1 { font-size: 2rem; }
-            .nav-bar { gap: 1.2rem; }
-        }
-    </style>
+    <title>Lado B Engenharia | Soluções Técnicas e Inteligência Construtiva</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- Navegação principal como diretórios -->
-<nav class="nav-bar">
-    <a href="#home">home</a>
-    <a href="#quem-somos">quem_somos</a>
-    <a href="#servicos">servicos</a>
-    <a href="#blog">blog</a>
-    <a href="#contato">contato</a>
-</nav>
+    <header>
+        <nav class="container">
+            <div class="logo">LADO_B<span>.eng</span></div>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
 
-<!-- Seção HOME / Hero -->
-<section id="home">
-    <h1>// INTELLIGENCE_CORE</h1>
-    <div class="code-block">
-        <span class="prompt"></span> >_ ENGENHARIA.ARQUITETURA.ELÉTRICA<br>
-        <span class="prompt"></span> >_ status: <span style="color:#9bc7b5;">OPERACIONAL [MODO_DIAGNOSTICO]</span>
-    </div>
-    <p class="comment">Unindo lógica de software à execução de campo para eliminar retrabalho.</p>
-    <p class="comment">Soluções baseadas em diagnóstico aprofundado.</p>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home">~/home</a></li>
+                <li><a href="#sobre">~/quem_somos</a></li>
+                <li><a href="#servicos">~/módulos_de_serviço</a></li>
+                <li><a href="#home">~/blog</a></li>
+                <li><a href="#contato">~/contato</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- CTA principal como comando -->
-    <a href="#contato" class="cmd-button">EXECUTAR_DIAGNOSTICO_INICIAL</a>
-</section>
-
-<!-- Seção QUEM SOMOS com arquivo de configuração -->
-<section id="quem-somos">
-    <h2>QUEM_SOMOS</h2>
-    <div class="config-file" style="margin-top:0;">
-        <div class="config-comment"> Arquivo de configuração do sistema Lado B Engenharia</div>
-        <div class="config-line"><span class="config-string">NOME="Lado B Engenharia"</span></div>
-        <div class="config-line"><span class="config-string">CORE="Multidisciplinaridade: gestão administrativa + lógica de software + execução de campo (elétrica/civil)"</span></div>
-        <div class="config-line"><span class="config-string">METODO="investigativo: diagnosticar a raiz do problema antes de executar"</span></div>
-        <div class="config-line"><span class="config-string">OBJETIVO="condução técnica confiável, prática e livre de burocracias"</span></div>
-        <div class="config-line"><span class="config-string">STATUS="ROBUSTO &amp;&amp; SEGURO"</span></div>
-    </div>
-    <!-- Breve comentário adicional, se desejado -->
-    <p class="comment">core operational desde 2015 · abordagem investigativa documentada</p>
-</section>
-
-<!-- Seção MÓDULOS DE SERVIÇO -->
-<section id="servicos">
-    <h2>MÓDULOS_DE_SERVIÇO</h2>
-
-    <div class="modulos-container">
-        <!-- Módulo 01 -->
-        <div class="modulo">
-            <div class="modulo-titulo">PROJETOS & DESIGN</div>
-            <div class="modulo-arquivo">módulo: planejamento_estrutural.so</div>
-            <div class="modulo-funcao">Arquitetura, Elétrica e Civil.</div>
-            <div class="modulo-acao">Estruturar plano para <span style="color:#9bc7b5;">0% de retrabalho</span>.</div>
+    <section id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>ENGENHARIA<br><span class="highlight">ARQUITETURA<br></span> ELÉTRICA</h1>
+                <p>// Soluções baseadas em diagnóstico aprofundado para eliminar retrabalhos.</p>
+                <a href="#" class="btn-cta whatsapp-link" data-msg="Olá! Vim pelo site e preciso de um diagnóstico técnico.">_SOLICITAR_DIAGNOSTICO</a>
+            </div>
         </div>
+        <div class="grid-overlay"></div>
+    </section>
 
-        <!-- Módulo 02 -->
-        <div class="modulo">
-            <div class="modulo-titulo">EXECUÇÃO & GESTÃO</div>
-            <div class="modulo-arquivo">módulo: gestao_obra.exe</div>
-            <div class="modulo-funcao">Acompanhamento integral e ART.</div>
-            <div class="modulo-acao">Executar reforma com <span style="color:#9bc7b5;">desperdício zero</span>.</div>
+    <section id="sobre" class="container" style="padding: 80px 20px;">
+        <div class="section-header">
+            <h2>// QUEM_SOMOS</h2>
+            <p>A Lado B Engenharia opera como um sistema robusto, projetado para clientes que exigem segurança e objetividade. Nosso core é a Multidisciplinaridade: a fusão entre gestão administrativa, lógica de software e execução de campo (elétrica e civil).</p>
+            <br>
+            <p>// Nossa abordagem é investigativa. Antes de executar, diagnosticamos a raiz do problema para garantir uma condução técnica confiável, prática e livre de burocracias.</p>
         </div>
-
-        <!-- Módulo 03 -->
-        <div class="modulo">
-            <div class="modulo-titulo">SISTEMAS ELÉTRICOS</div>
-            <div class="modulo-arquivo">módulo: diagnostico_falhas.elf</div>
-            <div class="modulo-funcao">Investigação de falhas e quadros de alta precisão.</div>
-            <div class="modulo-acao">Reparo definitivo da <span style="color:#9bc7b5;">causa raiz</span>.</div>
+        <div class="about-grid">
+            <div class="card">
+                <h3>// Resolução de Problemas</h3>
+                <p>Nossa abordagem é técnica e investigativa. Focamos em entender a raiz do problema antes de propor a solução, evitando retrabalho e gastos desnecessários para o cliente.</p>
+            </div>
+            <div class="card">
+                <h3>// Multidisciplinaridade</h3>
+                <p>A união da gestão administrativa, lógica de software e execução de campo (elétrica e civil). Uma visão completa sobre custos, segurança e prazos da sua obra.</p>
+            </div>
         </div>
+    </section>
 
-        <!-- Módulo 04 -->
-        <div class="modulo">
-            <div class="modulo-titulo">SEGURANÇA & LAUDOS</div>
-            <div class="modulo-arquivo">módulo: regularizacao_laudos.sh</div>
-            <div class="modulo-funcao">AVCB, vistorias e segurança do trabalho.</div>
-            <div class="modulo-acao">Regularizar imóvel e emitir laudos técnicos.</div>
+    <section id="servicos" class="bg-darker">
+        <div class="container">
+            <div class="section-header">
+                <h2>// MÓDULOS_DE_SERVIÇO</h2>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="card-icon">01</div>
+                    <h3>PROJETOS & DESIGN</h3>
+                        <p>Arquitetura, Elétrica e Civil com foco em planejamento estruturado.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="card-icon">02</div>
+                    <h3>EXECUÇÃO & GESTÃO</h3>
+                    <p>Acompanhamento integral, emissão de ART e reformas planejadas para eliminar desperdícios.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="card-icon">03</div>
+                    <h3>SISTEMAS ELÉTRICOS</h3>
+                    <p>Diagnóstico investigativo de falhas, montagem de quadros e elétrica de alta precisão.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="card-icon">04</div>
+                    <h3>SEGURANÇA & LAUDOS</h3>
+                    <p>Regularização de imóveis, AVCB, segurança do trabalho e vistorias técnicas.</p>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Seção BLOG placeholder (link funcional) -->
-<section id="blog" style="margin: 3rem 0 2rem;">
-    <h2>BLOG</h2>
-    <p class="comment">registro de diagnósticos e soluções</p>
-    <div class="code-block">
-        <span class="prompt"></span> ls -la ~/blog/<br>
-        >_ <a href="#">2025-02-20_diagnostico-falhas-estruturais.log</a><br>
-        >_ <a href="#">2025-01-15_avcb_regularizacao_passos.sh</a><br>
-        >_ <a href="#">2024-12-10_eficiencia_energetica_ibiuña.md</a><br>
-        <span class="prompt"></span> <span style="color:#6f8b80;">(em construção — mais arquivos em breve)</span>
-    </div>
-</section>
-
-<!-- Seção CONTATO no formato .config -->
-<section id="contato">
-    <h2>CONTATO.config</h2>
-    <div class="config-file">
-        <div class="config-comment"> Arquivo de configuração de comunicação</div>
-        <div class="config-comment"> Execute um dos comandos abaixo para iniciar:</div>
-        
-        <div class="config-line config-cmd">run --connect --protocol=whatsapp --target="DIAGNOSTICO"</div>
-        <div class="config-line" style="margin-left:1.5rem;">
-            <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20solicitar%20um%20diagnóstico" target="_blank" style="border-bottom:1px dashed #6f8b80;">[ whatsapp.diagnostico ]</a>
+    <footer id="contato">
+        <div class="container">
+            <h2 style="font-family: var(--font-mono); color: var(--accent); margin-bottom: 20px;">CONTATO</h2>
+            <p># Base de Operações: Piedade e Ibiúna - SP</p>
+            <p># Atendimento Remoto: Todo o Brasil</p>
+            <br>
+            <p>>_ Email: sinatro@msn.com </p>
+            <p>>_ Whatsapp: 11 99649 5465</p>
+            <br>
+            <a href="#" class="btn-cta whatsapp-link" data-msg="Olá! Gostaria de falar sobre um projeto/obra.">_INICIAR_CONVERSA_NO_WHATSAPP</a>
+            
+            
+            
+            <p style="margin-top: 40px; font-size: 0.8rem; color: #555;">
+    &copy; 2026 Lado B Engenharia. Desenvolvido por João Sinatro
+    <a href="https://jsinatro.github.io/sinatro" target="_blank" rel="noopener noreferrer" aria-label="GitHub de João Sinatro">
+        <i class="fa-brands fa-github" style="color: #555;"></i>
+    </a>
+</p>
         </div>
+    
+    </footer>
 
-        <div class="config-line config-cmd" style="margin-top:1.2rem;">mail --send-to admin@ladob.eng.br --subject="NOVO_PROJETO"</div>
-        <div class="config-line" style="margin-left:1.5rem;">
-            <a href="mailto:admin@ladob.eng.br?subject=NOVO_PROJETO">[ enviar e-mail ]</a>
-        </div>
+    <a href="#" class="whatsapp-float whatsapp-link" data-msg="Olá! Estava navegando no site e preciso de ajuda com um serviço de engenharia." title="Fale com o Engenheiro">
+        <svg viewBox="0 0 32 32" width="32" height="32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16.037 1.637c-7.91 0-14.321 6.411-14.321 14.32 0 2.532.658 5.004 1.912 7.185L1.6 30.342l7.351-1.928c2.115 1.141 4.5 1.741 6.953 1.742h.005c7.907 0 14.318-6.412 14.318-14.32-.002-3.834-1.496-7.436-4.205-10.146-2.71-2.71-6.315-4.203-10.15-4.203h-.005l.17-.15zm.006 2.406c3.193 0 6.195 1.244 8.45 3.5 2.256 2.256 3.498 5.258 3.5 8.45.002 6.582-5.353 11.936-11.933 11.936-2.102-.001-4.161-.548-5.966-1.584l-.427-.245-4.43 1.162 1.182-4.316-.27-.43c-1.139-1.815-1.741-3.911-1.741-6.059.001-6.584 5.357-11.938 11.942-11.938h-.307zm6.398 13.917c-.352-.176-2.08-1.026-2.404-1.143-.323-.117-.557-.176-.792.176-.234.352-.908 1.143-1.114 1.378-.205.234-.41.264-.762.088-.352-.176-1.484-.548-2.828-1.747-1.045-.933-1.75-2.086-1.955-2.438-.205-.352-.022-.543.154-.719.158-.158.352-.41.528-.616.176-.205.234-.352.352-.586.117-.234.059-.439-.029-.616-.088-.176-1.01-2.438-1.383-3.336-.364-.881-.734-.761-1.009-.775-.264-.012-.566-.015-.86-.015s-.772.108-1.173.541c-.4.433-1.531 1.496-1.531 3.644 0 2.148 1.567 4.225 1.785 4.518.217.293 3.083 4.708 7.468 6.605 1.043.451 1.858.72 2.493.922 1.048.332 2.003.285 2.755.172.839-.125 2.583-1.055 2.943-2.074.361-1.019.361-1.894.254-2.074-.107-.18-.391-.285-.742-.461z"/></svg>
+    </a>
 
-        <div class="config-comment" style="margin-top:1.2rem;"> Ou copie a string de conexão direta:</div>
-        <div class="config-line"><span class="config-string">EMAIL: admin@ladob.eng.br</span></div>
-        <div class="config-line"><span class="config-string">WHATSAPP: +55 11 99999-9999</span></div>
-    </div>
-    <!-- Observação sutil de placeholder para e-mail profissional -->
-    <p class="comment" style="font-size:0.9rem;">* e-mail corporativo ativo: admin@ladob.eng.br (substitua pelo seu endereço real)</p>
-</section>
-
-<!-- Rodapé com assinatura do sistema -->
-<footer>
-    <div class="config-line"><span class="config-string">LADO B ENGENHARIA © 2025 · v.3.1.0 (sistema de inteligência construtiva)</span></div>
-    <div class="config-line"><span class="config-string">operação: Ibiúna/SP · todos os direitos reservados</span></div>
-    <div style="margin-top:1rem;">
-        <a href="#home">~/home</a> · <a href="#quem-somos">~/quem_somos</a> · <a href="#servicos">~/servicos</a> · <a href="#blog">~/blog</a> · <a href="#contato">~/contato</a>
-    </div>
-</footer>
-
-<!-- Pequeno script para rolagem suave (opcional, mantém funcionalidade) -->
-<script>
-    // Rolagem suave para os links internos
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
-    });
-</script>
+    <script src="script.js"></script>
 </body>
 </html>
